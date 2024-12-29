@@ -12,6 +12,7 @@ export default {
       },
       backgroundImage: {
         "distro-boss": "url('/src/assets/home/chef-service.jpg')",
+        "featured-bgImg": "url('/src/assets/home/featured.jpg')",
       },
       colors: {
         'subTitle-color': '#D99904'

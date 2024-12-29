@@ -4,7 +4,7 @@ const DistroBoss = () => {
     return (
         <>
             <div
-                className="hero h-[572px] bg-distro-boss my-20">
+                className="hero h-[572px] bg-distro-boss bg-fixed my-20">
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-neutral-content text-center">
                     <div className=" bg-white py-20 px-40 bg-opacity-85  text-black">
