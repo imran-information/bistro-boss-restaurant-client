@@ -5,21 +5,12 @@ import { Link, NavLink } from 'react-router-dom';
 const NavBar = () => {
     const navigationBar = <>
         <li><NavLink to='/'>Home</NavLink></li>
-        <li>
-            <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                    <li><a>Submenu 1</a></li>
-                    <li><a>Submenu 2</a></li>
-                </ul>
-            </details>
-        </li>
-        <li><a>Item 3</a></li>
+        <li><NavLink to='/menu'>Our Menu</NavLink></li>
     </>
 
     return (
         <>
-            <div className="navbar px-10 fixed z-10 bg-black bg-opacity-50  text-white ">
+            <div className="navbar px-10 fixed z-10 bg-black bg-opacity-50  text-white uppercase">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

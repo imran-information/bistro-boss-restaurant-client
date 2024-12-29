@@ -17,7 +17,7 @@ const FeturedItem = () => {
                     <div className="flex-1 md:ml-12 pt-20">
                         <h1 className="text-2xl  font-bold">March 20, 2023</h1>
                         <h1 className="text-2xl  font-bold">WHERE CAN I GET SOME?</h1>
-                        <p className="mb-5   font">
+                        <p className="mb-5">
                             Perfect for intimate dinners, corporate events, or special celebrations, BISTRO BOSS is more than a meal – it’s a memory waiting to be made.
                         </p>
                         <button className="btn btn-outline border-0 border-b-4 text-white uppercase  hover:bg-white hover:text-black hover:border-b-white">read more</button>
