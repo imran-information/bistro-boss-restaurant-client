@@ -25,31 +25,31 @@ const Menu = () => {
 
                 {/* TODAY'S OFFER  */}
                 <div className="w-9/12 mx-auto my-20">
-                    <MenuCategory subTitle="Don't miss" title="TODAY'S OFFER" btnText="ORDER YOUR FAVOURITE FOOD" items={offeredMenu} ></MenuCategory>
+                    <MenuCategory subTitle="Don't miss" title="TODAY'S OFFER" btnText="ORDER YOUR FAVOURITE FOOD" items={offeredMenu} categoryLink={"todays-offers"}></MenuCategory>
                 </div>
 
                 {/* desserts items  */}
                 <Cover img={dessertImg} subTitle={"Perfect for intimate dinners, corporate events, or special celebrations, BISTRO BOSS is more than a meal – it’s a memory waiting to be made."} title={"DESSERTS"}></Cover>
                 <div className="w-9/12 mx-auto my-20">
-                    <MenuCategory subTitle="" title="" btnText="ORDER YOUR FAVOURITE FOOD" items={dessertsMenu} ></MenuCategory>
+                    <MenuCategory subTitle="" title="" btnText="ORDER YOUR FAVOURITE FOOD" items={dessertsMenu} categoryLink={"desserts"}></MenuCategory>
                 </div>
 
                 {/* Pizza items  */}
                 <Cover img={pizzaImg} subTitle={"Perfect for intimate dinners, corporate events, or special celebrations, BISTRO BOSS is more than a meal – it’s a memory waiting to be made."} title={"pizzas"}></Cover>
                 <div className="w-9/12 mx-auto my-20">
-                    <MenuCategory subTitle="" title="" btnText="ORDER YOUR FAVOURITE FOOD" items={pizzasMenu} ></MenuCategory>
+                    <MenuCategory subTitle="" title="" btnText="ORDER YOUR FAVOURITE FOOD" items={pizzasMenu} categoryLink={"pizzas"}></MenuCategory>
                 </div>
 
                 {/* Salads items  */}
                 <Cover img={saladImg} subTitle={"Perfect for intimate dinners, corporate events, or special celebrations, BISTRO BOSS is more than a meal – it’s a memory waiting to be made."} title={"Salads"}></Cover>
                 <div className="w-9/12 mx-auto my-20">
-                    <MenuCategory subTitle="" title="" btnText="ORDER YOUR FAVOURITE FOOD" items={saladsMenu} ></MenuCategory>
+                    <MenuCategory subTitle="" title="" btnText="ORDER YOUR FAVOURITE FOOD" items={saladsMenu} categoryLink={"salads"}></MenuCategory>
                 </div>
 
                 {/* Soups items  */}
                 <Cover img={soupImg} subTitle={"Perfect for intimate dinners, corporate events, or special celebrations, BISTRO BOSS is more than a meal – it’s a memory waiting to be made."} title={"Soups"}></Cover>
                 <div className="w-9/12 mx-auto my-20">
-                    <MenuCategory subTitle="" title="" btnText="ORDER YOUR FAVOURITE FOOD" items={soupsMenu} ></MenuCategory>
+                    <MenuCategory subTitle="" title="" btnText="ORDER YOUR FAVOURITE FOOD" items={soupsMenu} categoryLink={"soups"}></MenuCategory>
                 </div>
 
             </div>

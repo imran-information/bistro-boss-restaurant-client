@@ -1,20 +1,21 @@
 
 
-const ChefCard = () => {
+const FoodCard = ({ items }) => {
+    const { _id, name, recipe, image, category, price } = items || {}
     return (
 
         <div className="max-w-sm overflow-hidden bg-gray-100 rounded-lg shadow-md">
             <img
                 className="w-full"
-                src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                src={image}
                 alt="Green double couch with wooden legs"
             />
             <div className="p-4 space-y-2">
-                <h2 className="text-lg font-semibold text-gray-900">Living room Sofa</h2>
+                <h2 className="text-lg font-semibold text-gray-900">{name}</h2>
                 <p className="text-gray-600">
-                    This sofa is perfect for modern tropical spaces, baroque inspired spaces.
+                    {recipe.length > 80 ? recipe.slice(0, 80) + "..." : recipe}
                 </p>
-                <p className="mt-2 text-2xl font-medium tracking-tight text-gray-800">$450</p>
+                <p className="mt-2 text-2xl font-medium tracking-tight text-gray-800">${price}</p>
             </div>
             <div className="flex gap-2 p-4">
                 <button className="px-4 py-2  text-xs uppercase font-bold text-subTitle-color bg-black rounded hover:bg-[#1F2937]">
@@ -31,4 +32,4 @@ const ChefCard = () => {
     );
 };
 
-export default ChefCard;
+export default FoodCard;

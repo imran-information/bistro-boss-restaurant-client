@@ -1,8 +1,9 @@
 import React from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import PopularItem from '../../../components/PopularItem/PopularItem';
+import { Link } from 'react-router-dom';
 
-const MenuCategory = ({ subTitle, title, items, btnText }) => {
+const MenuCategory = ({ subTitle, title, items, btnText, categoryLink }) => {
 
     return (
         <div>
@@ -12,9 +13,9 @@ const MenuCategory = ({ subTitle, title, items, btnText }) => {
                     items.map(item => <PopularItem key={item._id} item={item}></PopularItem>)
                 }
             </div>
-            <div className="flex  justify-center my-10 items-center">
+            <Link to={`/order/${categoryLink}`} className="flex  justify-center my-10 items-center">
                 <button className="btn btn-outline border-0 border-b-4 uppercase">{btnText}</button>
-            </div>
+            </Link>
         </div>
     );
 };
