@@ -5,6 +5,7 @@ import dessertImg from '../../../assets/menu/dessert-bg.jpeg'
 import pizzaImg from '../../../assets/menu/pizza-bg.jpg'
 import saladImg from '../../../assets/menu/salad-bg.jpg'
 import soupImg from '../../../assets/menu/soup-bg.jpg'
+import drinkImg from '../../../assets/menu/soup-bg.jpg'
 import MenuCategory from '../MenuCategory/MenuCategory';
 import useMenu from '../../../hooks/useMenu';
 
@@ -16,6 +17,7 @@ const Menu = () => {
     const pizzasMenu = menu.filter(item => item.category === 'pizza')
     const saladsMenu = menu.filter(item => item.category === 'salad')
     const soupsMenu = menu.filter(item => item.category === 'soup')
+    const drinksMenu = menu.filter(item => item.category === 'drinks')
     if (loading) return <h1 className='text-4xl text-center'>Loading.....</h1>
     return (
         <>
@@ -25,7 +27,7 @@ const Menu = () => {
 
                 {/* TODAY'S OFFER  */}
                 <div className="w-9/12 mx-auto my-20">
-                    <MenuCategory subTitle="Don't miss" title="TODAY'S OFFER" btnText="ORDER YOUR FAVOURITE FOOD" items={offeredMenu} categoryLink={"todays-offers"}></MenuCategory>
+                    <MenuCategory subTitle="Don't miss" title="TODAY'S OFFER" btnText="ORDER YOUR FAVOURITE FOOD" items={offeredMenu} categoryLink={"salads"}></MenuCategory>
                 </div>
 
                 {/* desserts items  */}
@@ -50,6 +52,11 @@ const Menu = () => {
                 <Cover img={soupImg} subTitle={"Perfect for intimate dinners, corporate events, or special celebrations, BISTRO BOSS is more than a meal – it’s a memory waiting to be made."} title={"Soups"}></Cover>
                 <div className="w-9/12 mx-auto my-20">
                     <MenuCategory subTitle="" title="" btnText="ORDER YOUR FAVOURITE FOOD" items={soupsMenu} categoryLink={"soups"}></MenuCategory>
+                </div>
+                {/* Drinks items  */}
+                <Cover img={drinkImg} subTitle={"Perfect for intimate dinners, corporate events, or special celebrations, BISTRO BOSS is more than a meal – it’s a memory waiting to be made."} title={"Drinks"}></Cover>
+                <div className="w-9/12 mx-auto my-20">
+                    <MenuCategory subTitle="" title="" btnText="ORDER YOUR FAVOURITE FOOD" items={drinksMenu} categoryLink={"drinks"}></MenuCategory>
                 </div>
 
             </div>

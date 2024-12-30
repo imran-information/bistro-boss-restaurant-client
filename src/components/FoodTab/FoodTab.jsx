@@ -7,10 +7,15 @@ import { useState } from 'react';
 import './FoodTab.css'
 import useMenu from '../../hooks/useMenu';
 import OrderTabItems from '../../Pages/Order/OrderTabItems/OrderTabItems';
+import { useParams } from 'react-router-dom';
 
 
 const FoodTab = () => {
-    const [value, setValue] = useState(0);
+    const categories = ["salads", "pizzas", "soups", "desserts", "drinks"]
+    const { category } = useParams()
+    const initialValue = categories.indexOf(category)
+    const [value, setValue] = useState(initialValue);
+
     const [menu, loading] = useMenu()
 
     const drinks = menu.filter(item => item.category === 'drinks')
@@ -60,8 +65,8 @@ const FoodTab = () => {
         <Box sx={{ width: '100%', }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                    <Tab label="Salad" {...a11yProps(0)} />
-                    <Tab label="pizza" {...a11yProps(1)} />
+                    <Tab label="Salads" {...a11yProps(0)} />
+                    <Tab label="pizzas" {...a11yProps(1)} />
                     <Tab label="soups" {...a11yProps(2)} />
                     <Tab label="desserts" {...a11yProps(3)} />
                     <Tab label="drinks" {...a11yProps(4)} />
