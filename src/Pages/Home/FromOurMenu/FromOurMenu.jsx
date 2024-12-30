@@ -2,21 +2,23 @@ import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import axios from 'axios';
 import PopularItem from '../../../components/PopularItem/PopularItem';
+import useMenu from '../../../hooks/useMenu';
 
 const FromOurMenu = () => {
-    const [popularMenu, setPopularMenu] = useState([])
+    const [menu, loading] = useMenu()
 
-    useEffect(() => {
-        // const { data } = axios.get('../menu.json');
-        fetch('../menu.json')
-            .then(res => res.json())
-            .then(data => {
-                const popularItems = data.filter(popularMenu => popularMenu.category === 'popular');
-                setPopularMenu(popularItems)
-            })
-
-
-    }, [])
+    const popularMenu = menu.filter(item => item.category === 'popular')
+    if (loading) return <h1 className='text-4xl text-center'>Loading.....</h1>
+    // const [popularMenu, setPopularMenu] = useState([])
+    // useEffect(() => {
+    //     // const { data } = axios.get('../menu.json');
+    //     fetch('../menu.json')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             const popularItems = data.filter(popularMenu => popularMenu.category === 'popular');
+    //             setPopularMenu(popularItems)
+    //         })
+    // }, [])
 
     return (
         <section>
