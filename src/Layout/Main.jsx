@@ -5,14 +5,14 @@ import Footer from '../Pages/Shared/Footer/Footer';
 
 const Main = () => {
     const location = useLocation();
-    const noHeaderFooterSignUp = location.pathname.includes('signUp')
-    const noHeaderFooterSignIn = location.pathname.includes('signIn')
+    const noHeaderFooter = location.pathname.includes('signUp') || location.pathname.includes('signIn')
+
 
     return (
         <div className='font-montserrat'>
-            {noHeaderFooterSignIn || <NavBar></NavBar>}
+            {noHeaderFooter || <NavBar></NavBar>}
             <Outlet></Outlet>
-            {noHeaderFooterSignIn || <Footer></Footer>}
+            {noHeaderFooter || <Footer></Footer>}
         </div>
     );
 };

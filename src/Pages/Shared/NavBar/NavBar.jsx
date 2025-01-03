@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../../provider/AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 
 const NavBar = () => {
+    const { user, signOutUser } = useContext(AuthContext)
     const navigationBar = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/menu'>Our Menu</NavLink></li>
         <li><NavLink to='/order/salads'>Order Food</NavLink></li>
-        <li><NavLink to='/signIn'>SignIn</NavLink></li>
+        <li><NavLink to='/secret'>Secret</NavLink></li>
     </>
+    const handleSignOutUser = () => {
+        signOutUser()
+            .then(() => {
+                Swal.fire({
+                    title: "Sign Out successfully",
+                    icon: "success",
+                    draggable: true
+                });
+            })
+    }
 
     return (
         <>
@@ -47,7 +60,16 @@ const NavBar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    {
+                        user ? <>
+                            <button onClick={handleSignOutUser} className="btn btn-neutral btn-sm mr-3">Sign Out</button>
+                            <div className="avatar w-10 cursor-pointer">
+                                <div className="ring-primary ring-offset-base-100 w-24 rounded-full ring ring-offset-2">
+                                    <img src={user?.photoURL} />
+                                </div>
+                            </div>
+                        </> : <li className='list-none underline underline-offset-4 decoration-pink-500'><NavLink to='/signIn'>Sign In</NavLink></li>
+                    }
                 </div>
             </div>
         </>
