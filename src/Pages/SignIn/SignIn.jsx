@@ -56,7 +56,7 @@ const SignIn = () => {
                                     <LoadCanvasTemplate />
                                 </label>
                                 <input type="text" ref={captchaRef} name='captcha' placeholder="type here" className="input input-bordered" required />
-                                <button onClick={handleCaptchaValidate} className="btn btn-primary btn-xs mt-2">Login</button>
+                                <button onClick={handleCaptchaValidate} className="btn btn-primary btn-xs mt-2">Validate</button>
 
                             </div>
 
