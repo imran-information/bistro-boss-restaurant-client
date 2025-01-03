@@ -14,6 +14,7 @@ export default {
         "distro-boss": "url('/src/assets/home/chef-service.jpg')",
         "featured-bgImg": "url('/src/assets/home/featured.jpg')",
         "menu-banner1": "url('/src/assets/menu/banner3.jpg')",
+        "authentication": "url('/src/assets/others/authentication.png')",
       },
       colors: {
         'subTitle-color': '#D99904'
