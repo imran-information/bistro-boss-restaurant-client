@@ -8,6 +8,11 @@ import SignUp from '../Pages/SignUp/SignUp';
 import SignIn from '../Pages/SignIn/SignIn';
 import Secret from '../Pages/Shared/Secret/Secret';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import Dashboard from '../Layout/dashboard';
+import UserHome from '../Pages/Dashboard/UserHome/UserHome';
+import Reservation from '../Pages/Dashboard/Reservation/Reservation';
+import PaymentHistory from '../Pages/Dashboard/PaymentHistory/PaymentHistory';
+import MyCart from '../Pages/Dashboard/MyCart/MyCart';
 
 export const router = createBrowserRouter([
     {
@@ -40,5 +45,27 @@ export const router = createBrowserRouter([
             },
         ]
     },
+    {
+        path: 'dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: 'home',
+                element: <UserHome></UserHome>
+            },
+            {
+                path: 'reservation',
+                element: <Reservation></Reservation>
+            },
+            {
+                path: 'payment-history',
+                element: <PaymentHistory></PaymentHistory>
+            },
+            {
+                path: 'my-cart',
+                element: <MyCart></MyCart>
+            },
+        ]
+    }
 ]);
 

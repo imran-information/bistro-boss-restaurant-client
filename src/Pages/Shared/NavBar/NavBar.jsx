@@ -3,18 +3,21 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import { FaCartArrowDown } from "react-icons/fa";
+import useCart from '../../../hooks/useCart';
 
 const NavBar = () => {
     const { user, signOutUser } = useContext(AuthContext)
+    const [carts] = useCart();
+
     const navigationBar = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/menu'>Our Menu</NavLink></li>
         <li><NavLink to='/order/salads'>Order Food</NavLink></li>
         <li><NavLink to='/secret'>Secret</NavLink></li>
-        <li><NavLink to='/'>
+        <li><NavLink to='/dashboard/home'>
             <button className="flex items-center gap-2">
-            <FaCartArrowDown className='text-white w-5' />
-                <div className="badge">+0</div>
+                <FaCartArrowDown className='text-white w-5' />
+                <div className="badge">+{carts.length}</div>
             </button>
         </NavLink></li>
     </>
