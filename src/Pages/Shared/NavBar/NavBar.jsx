@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../provider/AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
-
+import { FaCartArrowDown } from "react-icons/fa";
 
 const NavBar = () => {
     const { user, signOutUser } = useContext(AuthContext)
@@ -11,6 +11,12 @@ const NavBar = () => {
         <li><NavLink to='/menu'>Our Menu</NavLink></li>
         <li><NavLink to='/order/salads'>Order Food</NavLink></li>
         <li><NavLink to='/secret'>Secret</NavLink></li>
+        <li><NavLink to='/'>
+            <button className="flex items-center gap-2">
+            <FaCartArrowDown className='text-white w-5' />
+                <div className="badge">+0</div>
+            </button>
+        </NavLink></li>
     </>
     const handleSignOutUser = () => {
         signOutUser()

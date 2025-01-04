@@ -1,7 +1,56 @@
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
+import { useLocation, useNavigate } from "react-router-dom";
+import { axiosSecure } from "../../hooks/useAxiosSecure";
+
 
 
 const FoodCard = ({ items }) => {
     const { _id, name, recipe, image, category, price } = items || {}
+    const { user } = useAuth()
+    const navigate = useNavigate()
+    const location = useLocation()
+
+
+    const handleAddToCart = food => {
+
+
+        if (user && user.email) {
+            const foodInfo = {
+                email: user.email,
+                id: _id,
+                name,
+                price
+            }
+            axiosSecure.post('/carts', foodInfo)
+                .then(res => {
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: `${name} food add to cart`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                })
+        } else {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Please sign In and add to the cart !",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Sign in!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // return <Navigate to="/signIn" state={{ from: location }} replace></Navigate>
+                    navigate('/signIn', { state: { from: location } })
+                }
+            });
+        }
+    }
     return (
 
         <div className="max-w-sm overflow-hidden bg-gray-100 rounded-lg shadow-md">
@@ -21,7 +70,7 @@ const FoodCard = ({ items }) => {
                 <button className="px-4 py-2  text-xs uppercase font-bold text-subTitle-color bg-black rounded hover:bg-[#1F2937]">
                     Buy now
                 </button>
-                <button className="px-4 py-2 text-xs  border-0 border-b-2 uppercase text-subTitle-color  font-bold  border-black rounded hover:bg-black">
+                <button onClick={() => handleAddToCart(items)} className="px-4 py-2 text-xs  border-0 border-b-2 uppercase text-subTitle-color  font-bold  border-black rounded hover:bg-black">
                     Add to cart
                 </button>
                 {/* <button className="btn btn-outline border-0 border-b-4 uppercase">View Full  Menu</button> */}
