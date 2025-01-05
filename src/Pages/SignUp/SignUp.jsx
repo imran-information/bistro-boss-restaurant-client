@@ -4,12 +4,14 @@ import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form"
 import Swal from 'sweetalert2'
+import useAxiosLocal from "../../hooks/useAxiosLocal";
 
 const SignUp = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const location = useLocation()
     const navigate = useNavigate()
     const from = location.state?.from?.pathname || "/";
+    const axiosLocal = useAxiosLocal()
     const {
         register,
         handleSubmit,
@@ -19,23 +21,32 @@ const SignUp = () => {
     } = useForm()
 
     const onSubmit = (data) => {
-        console.log(data)
+
         createUser(data.email, data.password)
             .then(result => {
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        Swal.fire({
-                            title: "Sign up successfully",
-                            icon: "success",
-                            draggable: true
-                        });
-                        navigate(from, { replace: true });
-                        reset()
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email,
+                            photo: data.photoURL
+                        }
+                        axiosLocal.post('/users', userInfo)
+                            .then(res => {
+                                console.log(res);
+                                Swal.fire({
+                                    title: "Sign up successfully",
+                                    icon: "success",
+                                    draggable: true
+                                });
+                                navigate(from, { replace: true });
+                                reset()
+                            })
                     }).catch((error) => {
                         Swal.fire({
                             icon: "error",
                             title: "Oops...",
-                            text: "Please try again!",
+                            text: error.message,
                         });
                     })
                 console.log("User---> ", result.user);

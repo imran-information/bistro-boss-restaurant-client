@@ -6,9 +6,11 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 
 const MyCart = () => {
-    const [carts, refetch] = useCart()
+    const [carts, refetch, isPending] = useCart()
     const axiosSecure = useAxiosSecure();
-    const totalPrice = carts.reduce((prv, cuv) => prv + cuv.price, 0)
+    const totalPrice = carts?.reduce((prv, cuv) => prv + cuv.price, 0)
+
+    if (isPending) return <h1>Loading......!</h1>
 
     const handleCartItemDelete = (id) => {
         Swal.fire({
