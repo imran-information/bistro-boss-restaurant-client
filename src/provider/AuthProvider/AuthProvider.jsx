@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from '../../firebase/firebase.init';
+import useAxiosLocal from '../../hooks/useAxiosLocal';
+
 
 export const AuthContext = createContext(null)
 
@@ -8,7 +10,13 @@ const AuthProvider = ({ children }) => {
     const auth = getAuth(app);
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const googleProvider = new GoogleAuthProvider();
+    const axiosLocal = useAxiosLocal();
 
+
+    const googleSignIn = () => {
+        return signInWithPopup(auth, googleProvider)
+    }
 
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
@@ -29,6 +37,13 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             console.log("currentUser----->", currentUser);
             setUser(currentUser);
+            if (currentUser) {
+                axiosLocal.post('/jwt', currentUser.email, {
+                    // TODO:
+                })
+            } else {
+
+            }
             setLoading(false);
 
         });
@@ -45,7 +60,8 @@ const AuthProvider = ({ children }) => {
         createUser,
         signInUser,
         signOutUser,
-        updateUserProfile
+        updateUserProfile,
+        googleSignIn
 
     }
 

@@ -13,6 +13,11 @@ import UserHome from '../Pages/Dashboard/UserHome/UserHome';
 import Reservation from '../Pages/Dashboard/Reservation/Reservation';
 import PaymentHistory from '../Pages/Dashboard/PaymentHistory/PaymentHistory';
 import MyCart from '../Pages/Dashboard/MyCart/MyCart';
+import AdminHome from '../Pages/Dashboard/Admin/AdminHome/AdminHome';
+import AddItems from '../Pages/Dashboard/Admin/AddItems/AddItems';
+import ManageItems from '../Pages/Dashboard/Admin/ManageItems/ManageItems';
+import ManageBooking from '../Pages/Dashboard/Admin/ManageBooking/ManageBooking';
+import AllUsers from '../Pages/Dashboard/Admin/AllUsers/AllUsers';
 
 export const router = createBrowserRouter([
     {
@@ -49,6 +54,30 @@ export const router = createBrowserRouter([
         path: 'dashboard',
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
+
+            // admin access
+            {
+                path: 'home',
+                element: <AdminHome></AdminHome>
+            },
+            {
+                path: 'add-items',
+                element: <AddItems></AddItems>
+            },
+            {
+                path: 'manage-items',
+                element: <ManageItems></ManageItems>
+            },
+            {
+                path: 'manage-bookings',
+                element: <ManageBooking></ManageBooking>
+            },
+            {
+                path: 'all-users',
+                element: <AllUsers></AllUsers>
+            },
+
+            // users access
             {
                 path: 'home',
                 element: <UserHome></UserHome>

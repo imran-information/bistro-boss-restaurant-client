@@ -4,6 +4,7 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, val
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import SocialSignIn from '../../components/SocialSignIn/SocialSignIn';
 
 const SignIn = () => {
     const { signInUser } = useContext(AuthContext);
@@ -12,9 +13,11 @@ const SignIn = () => {
     const navigate = useNavigate()
     const from = location.state?.from?.pathname || "/";
 
+
     useEffect(() => {
         loadCaptchaEnginge(6)
     }, [])
+
 
 
     const handleSignInUser = (e) => {
@@ -53,7 +56,8 @@ const SignIn = () => {
                 <h1 className="text-5xl font-bold text-center absolute top-20">Login now!</h1>
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                        <form onSubmit={handleSignInUser} className="card-body">
+                        <SocialSignIn></SocialSignIn>
+                        <form onSubmit={handleSignInUser} className="card-body pt-0">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
@@ -86,7 +90,7 @@ const SignIn = () => {
                         <p className='text-center pb-2'>New here? <Link className='text-green-600' to='/signUp'>Create a New Account</Link></p>
                     </div>
                     <div className="">
-                        <img src={SignInImage} alt="" srcset="" />
+                        <img src={SignInImage} alt="" srcSet="" />
                     </div>
                 </div>
             </div>

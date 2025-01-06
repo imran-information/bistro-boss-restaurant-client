@@ -1,11 +1,14 @@
 import React from 'react';
-import { FaAmazonPay, FaBook, FaCalendar, FaCartPlus, FaHome, FaResolving, FaShopify } from 'react-icons/fa';
+import { FaAmazonPay, FaBook, FaCalendar, FaCartPlus, FaHome, FaResolving, FaShopify, FaUsersCog } from 'react-icons/fa';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import './Dashboard.css'
 import { TiThMenu } from 'react-icons/ti';
 import { LiaSmsSolid } from 'react-icons/lia';
+import { IoRestaurantSharp } from 'react-icons/io5';
+import { PiTextAlignJustifyFill } from 'react-icons/pi';
 
 const Dashboard = () => {
+    const isAdmin = true;
 
     return (
         <div className='flex '>
@@ -15,14 +18,28 @@ const Dashboard = () => {
                     <p className='pl-[2px] text-xl tracking-[6px] leading-none'>RESTAURANT</p>
                 </Link>
 
-                <ul className='mt-16 uppercase'>
-                    <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/home'> <FaHome></FaHome> User Home</NavLink></li>
-                    <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/reservation'><FaCalendar></FaCalendar> reservation</NavLink></li>
-                    <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/payment-history'><FaAmazonPay /> payment history</NavLink></li>
-                    <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/my-cart'><FaCartPlus></FaCartPlus> my cart</NavLink></li>
-                    <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/add-review'><FaResolving></FaResolving> add review</NavLink></li>
-                    <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/my-booking'><FaBook></FaBook> my booking</NavLink></li>
-                </ul>
+                {
+                    isAdmin
+                        ? <ul className='mt-16 uppercase'>
+                            <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/home'> <FaHome></FaHome> Admin Home</NavLink></li>
+                            <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/add-items'><IoRestaurantSharp /> Add items</NavLink></li>
+                            <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/manage-items'><PiTextAlignJustifyFill /> Manage items</NavLink></li>
+                            <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/manage-bookings'><FaBook /> manage Booking</NavLink></li>
+                            <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/all-users'><FaUsersCog /> all users</NavLink></li>
+
+                        </ul>
+                        : <ul className='mt-16 uppercase'>
+                            <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/home'> <FaHome></FaHome> User Home</NavLink></li>
+                            <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/reservation'><FaCalendar></FaCalendar> reservation</NavLink></li>
+                            <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/payment-history'><FaAmazonPay /> payment history</NavLink></li>
+                            <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/my-cart'><FaCartPlus></FaCartPlus> my cart</NavLink></li>
+                            <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/add-review'><FaResolving></FaResolving> add review</NavLink></li>
+                            <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/my-booking'><FaBook></FaBook> my booking</NavLink></li>
+                        </ul>
+                }
+
+
+                {/* common user */}
                 <div className="divider"></div>
                 <ul className='uppercase'>
                     <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/'> <FaHome></FaHome>Home</NavLink></li>

@@ -5,6 +5,7 @@ import { AuthContext } from "../../provider/AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form"
 import Swal from 'sweetalert2'
 import useAxiosLocal from "../../hooks/useAxiosLocal";
+import SocialSignIn from "../../components/SocialSignIn/SocialSignIn";
 
 const SignUp = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -77,7 +78,8 @@ const SignUp = () => {
                         <img src={SignInImage} alt="" srcset="" />
                     </div>
                     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                        <SocialSignIn></SocialSignIn>
+                        <form onSubmit={handleSubmit(onSubmit)} className="card-body pt-0">
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
