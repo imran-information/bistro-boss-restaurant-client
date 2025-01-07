@@ -75,7 +75,7 @@ const SignUp = () => {
                 <h1 className="text-5xl font-bold text-center absolute top-20">Sign Up now!</h1>
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="">
-                        <img src={SignInImage} alt="" srcset="" />
+                        <img src={SignInImage} alt="" srcSet="" />
                     </div>
                     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                         <SocialSignIn></SocialSignIn>

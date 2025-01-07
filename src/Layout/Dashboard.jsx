@@ -6,9 +6,10 @@ import { TiThMenu } from 'react-icons/ti';
 import { LiaSmsSolid } from 'react-icons/lia';
 import { IoRestaurantSharp } from 'react-icons/io5';
 import { PiTextAlignJustifyFill } from 'react-icons/pi';
+import useAdmin from '../hooks/useAdmin';
 
 const Dashboard = () => {
-    const isAdmin = true;
+    const [isAdmin] = useAdmin()
 
     return (
         <div className='flex '>
