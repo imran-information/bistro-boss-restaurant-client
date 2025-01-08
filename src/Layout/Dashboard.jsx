@@ -10,7 +10,7 @@ import useAdmin from '../hooks/useAdmin';
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin()
-
+    console.log(isAdmin);
     return (
         <div className='flex '>
             <div className="w-72 bg-[#D1A054] p-5 min-h-screen ">

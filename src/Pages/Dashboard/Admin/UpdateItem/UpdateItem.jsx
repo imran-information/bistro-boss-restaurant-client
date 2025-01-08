@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
-import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
-import './AddItems.css'
-import useAxiosLocal from '../../../../hooks/useAxiosLocal';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
-import Swal from 'sweetalert2';
-const VITE_IMGGBB_API_KEY = import.meta.env.VITE_IMGGBB_API_KEY
-const imageUploadImgBB = `https://api.imgbb.com/1/upload?key=${VITE_IMGGBB_API_KEY}`
+import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 
-
-
-const AddItems = () => {
-    const axiosLocal = useAxiosLocal()
+const UpdateItem = () => {
     const axiosSecure = useAxiosSecure()
     const [formData, setFormData] = useState({
         name: "",
@@ -50,7 +42,7 @@ const AddItems = () => {
                 category: formData.category,
                 price: parseFloat(formData.price)
             }
- 
+
             // console.log(menuInfo);
             await axiosSecure.post('/menus', menuInfo)
                 .then(menuRes => {
@@ -73,10 +65,9 @@ const AddItems = () => {
         }
 
     };
-
     return (
         <div>
-            <SectionTitle subTitle="What's new?" title={"ADD AN ITEM"}></SectionTitle>
+            <SectionTitle subTitle="What's new?" title={"UPDATE ITEM"}></SectionTitle>
 
             <div className="form-container ">
 
@@ -144,4 +135,4 @@ const AddItems = () => {
     );
 };
 
-export default AddItems;
+export default UpdateItem;

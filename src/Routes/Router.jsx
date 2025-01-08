@@ -8,7 +8,7 @@ import SignUp from '../Pages/SignUp/SignUp';
 import SignIn from '../Pages/SignIn/SignIn';
 import Secret from '../Pages/Shared/Secret/Secret';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
-import Dashboard from '../Layout/dashboard';
+import Dashboard from '../Layout/Dashboard';
 import UserHome from '../Pages/Dashboard/UserHome/UserHome';
 import Reservation from '../Pages/Dashboard/Reservation/Reservation';
 import PaymentHistory from '../Pages/Dashboard/PaymentHistory/PaymentHistory';
@@ -18,6 +18,9 @@ import AddItems from '../Pages/Dashboard/Admin/AddItems/AddItems';
 import ManageItems from '../Pages/Dashboard/Admin/ManageItems/ManageItems';
 import ManageBooking from '../Pages/Dashboard/Admin/ManageBooking/ManageBooking';
 import AllUsers from '../Pages/Dashboard/Admin/AllUsers/AllUsers';
+import AdminRoute from './AdminRoute/AdminRoute';
+import UpdateItem from '../Pages/Dashboard/Admin/UpdateItem/UpdateItem';
+
 
 export const router = createBrowserRouter([
     {
@@ -58,23 +61,27 @@ export const router = createBrowserRouter([
             // admin access
             {
                 path: 'home',
-                element: <AdminHome></AdminHome>
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
             },
             {
                 path: 'add-items',
-                element: <AddItems></AddItems>
+                element: <AdminRoute><AddItems></AddItems></AdminRoute>
             },
             {
                 path: 'manage-items',
-                element: <ManageItems></ManageItems>
+                element: <AdminRoute><ManageItems></ManageItems></AdminRoute>
+            },
+            {
+                path: 'update-item/:id',
+                element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>
             },
             {
                 path: 'manage-bookings',
-                element: <ManageBooking></ManageBooking>
+                element: <AdminRoute><ManageBooking></ManageBooking></AdminRoute>
             },
             {
                 path: 'all-users',
-                element: <AllUsers></AllUsers>
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
 
             // users access
