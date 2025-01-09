@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
+import { useLoaderData } from 'react-router-dom';
+import useAxiosLocal from '../../../../hooks/useAxiosLocal';
+import Swal from 'sweetalert2';
+const VITE_IMGGBB_API_KEY = import.meta.env.VITE_IMGGBB_API_KEY
+const imageUploadImgBB = `https://api.imgbb.com/1/upload?key=${VITE_IMGGBB_API_KEY}`
 
 const UpdateItem = () => {
     const axiosSecure = useAxiosSecure()
+    const axiosLocal = useAxiosLocal()
+    const { name, recipe, image, category, price, _id } = useLoaderData()
+
+
     const [formData, setFormData] = useState({
-        name: "",
-        category: "",
-        price: "",
-        recipe: "",
-        image: null,
+        name: name,
+        category: category,
+        price: price,
+        recipe: recipe,
+        image: image,
     });
 
     const handleChange = (e) => {
@@ -44,13 +53,13 @@ const UpdateItem = () => {
             }
 
             // console.log(menuInfo);
-            await axiosSecure.post('/menus', menuInfo)
+            await axiosSecure.patch(`/menus/${_id}`, menuInfo)
                 .then(menuRes => {
                     // console.log(menuRes.insertedId);
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: "Your work has been saved",
+                        title: "Your item updated successfully",
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -65,10 +74,10 @@ const UpdateItem = () => {
         }
 
     };
+
     return (
         <div>
-            <SectionTitle subTitle="What's new?" title={"UPDATE ITEM"}></SectionTitle>
-
+            <SectionTitle subTitle="What's new?" title={"UPDATE ITEM"}></SectionTitle> 
             <div className="form-container ">
 
                 <form onSubmit={handleSubmit} className="recipe-form py-10 px-5">
@@ -77,8 +86,9 @@ const UpdateItem = () => {
                         <input
                             type="text"
                             name="name"
+                            defaultValue={name}
                             placeholder="Recipe name"
-                            value={formData.name}
+
                             onChange={handleChange}
                             required
                         />
@@ -88,11 +98,11 @@ const UpdateItem = () => {
                             <label>Category*</label>
                             <select
                                 name="category"
-                                value={formData.category}
+
                                 onChange={handleChange}
                                 required
                             >
-                                <option disabled value="">Category</option>
+                                <option disabled defaultValue={category}>Category</option>
                                 <option value="salad">Salad</option>
                                 <option value="pizza">Pizza</option>
                                 <option value="soups">Soups</option>
@@ -105,8 +115,9 @@ const UpdateItem = () => {
                             <input
                                 type="number"
                                 name="price"
+                                defaultValue={price}
                                 placeholder="Price"
-                                value={formData.price}
+
                                 onChange={handleChange}
                                 required
                             />
@@ -116,8 +127,9 @@ const UpdateItem = () => {
                         <label>Recipe Details*</label>
                         <textarea
                             name="recipe"
+                            defaultValue={recipe}
                             placeholder="Recipe Details"
-                            value={formData.recipe}
+
                             onChange={handleChange}
                             required
                         ></textarea>
@@ -127,7 +139,7 @@ const UpdateItem = () => {
                         <input required type="file" onChange={handleFileChange} />
                     </div>
                     <button type="submit" className="submit-button">
-                        Add Item 🍴
+                        Update Item 🍴
                     </button>
                 </form>
             </div>

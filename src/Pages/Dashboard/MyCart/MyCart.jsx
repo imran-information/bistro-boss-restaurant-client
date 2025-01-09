@@ -4,13 +4,14 @@ import useCart from '../../../hooks/useCart';
 import { FaTrashAlt } from "react-icons/fa";
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const MyCart = () => {
-    const [carts, refetch, isPending] = useCart()
+    const [carts, isPending, refetch] = useCart()
     const axiosSecure = useAxiosSecure();
+    if (isPending) return <h1>Loading......!</h1>
     const totalPrice = carts?.reduce((prv, cuv) => prv + cuv.price, 0)
 
-    if (isPending) return <h1>Loading......!</h1>
 
     const handleCartItemDelete = (id) => {
         Swal.fire({
@@ -54,10 +55,14 @@ const MyCart = () => {
                     <div className="">
                         <h2 className="text-3xl">total price: {totalPrice}</h2>
                     </div>
-                    <div className="text-3xl">
+                    {
+                        carts.length ? < Link to='/dashboard/payment'>
+                            <div className="text-3xl">
+                                <button className="btn btn-wide btn-neutral">Pay</button>
+                            </div>
+                        </Link> : <button disabled className="btn btn-wide btn-neutral">Pay</button>
+                    }
 
-                        <button className="btn btn-wide btn-neutral">Play</button>
-                    </div>
                 </div>
                 <table className="table my-4">
                     {/* head */}
@@ -109,7 +114,7 @@ const MyCart = () => {
 
                 </table>
             </div>
-        </div>
+        </div >
     );
 };
 

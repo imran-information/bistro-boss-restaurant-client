@@ -1,9 +1,10 @@
 import React from 'react';
+import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 const Reservation = () => {
     return (
         <div>
-            Reservation
+            <SectionTitle title={"BOOK A TABLE"} subTitle={'Reservation'}></SectionTitle>
         </div>
     );
 };

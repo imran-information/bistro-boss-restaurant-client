@@ -11,7 +11,7 @@ const FoodCard = ({ items }) => {
     const { user } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
-    const [, refetch] = useCart()
+    const [carts, isPending, refetch] = useCart()
 
     const handleAddToCart = food => {
 

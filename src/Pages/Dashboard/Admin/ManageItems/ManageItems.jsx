@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 import useMenu from '../../../../hooks/useMenu';
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
@@ -9,9 +9,8 @@ import { Link } from 'react-router-dom';
 const ManageItems = () => {
     const [menu, loading, refetch] = useMenu()
     const axiosSecure = useAxiosSecure()
-    const handleMenuItemUpdate = (id) => {
-        console.log(id);
-    }
+   
+
     const handleMenuItemDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -89,9 +88,8 @@ const ManageItems = () => {
                             <th>
 
                                 <Link to={`/dashboard/update-item/${item._id}`}>
-                                    <button onClick={() => handleMenuItemUpdate(item._id)} className='btn btn-neutral border-0  bg-[#D1A054] text-xl text-white'>
+                                    <button className='btn btn-neutral border-0  bg-[#D1A054] text-xl text-white'>
                                         <FaEdit></FaEdit>
-
                                     </button></Link>
                             </th>
                             <th>

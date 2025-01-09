@@ -9,10 +9,13 @@ import { PiTextAlignJustifyFill } from 'react-icons/pi';
 import useAdmin from '../hooks/useAdmin';
 
 const Dashboard = () => {
-    const [isAdmin] = useAdmin()
+    const [isAdmin, isLoading] = useAdmin()
     console.log(isAdmin);
+    if (isLoading) return <p>Loading.............</p>
+
+    // const isAdmin = false;
     return (
-        <div className='flex '>
+        <div className='flex'>
             <div className="w-72 bg-[#D1A054] p-5 min-h-screen ">
                 <Link to='/' className="font-silkscreen ">
                     <h3 className=' text-3xl -tracking-[6px] font-semibold leading-none'>BISTRO BOSS</h3>

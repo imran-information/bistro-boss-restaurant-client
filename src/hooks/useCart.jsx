@@ -17,7 +17,7 @@ const useCart = () => {
     if (error) return 'An error has occurred: ' + error.message
 
     console.log(carts);
-    return [carts, refetch]
+    return [carts, isPending, refetch]
 };
 
 export default useCart;

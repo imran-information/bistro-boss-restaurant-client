@@ -20,6 +20,7 @@ import ManageBooking from '../Pages/Dashboard/Admin/ManageBooking/ManageBooking'
 import AllUsers from '../Pages/Dashboard/Admin/AllUsers/AllUsers';
 import AdminRoute from './AdminRoute/AdminRoute';
 import UpdateItem from '../Pages/Dashboard/Admin/UpdateItem/UpdateItem';
+import Payment from '../Pages/Payment/Payment';
 
 
 export const router = createBrowserRouter([
@@ -61,7 +62,7 @@ export const router = createBrowserRouter([
             // admin access
             {
                 path: 'home',
-                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+                element: <AdminHome></AdminHome>
             },
             {
                 path: 'add-items',
@@ -73,7 +74,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'update-item/:id',
-                element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>
+                element: <AdminRoute><UpdateItem></UpdateItem></AdminRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/menus/${params.id}`)
             },
             {
                 path: 'manage-bookings',
@@ -92,6 +94,10 @@ export const router = createBrowserRouter([
             {
                 path: 'reservation',
                 element: <Reservation></Reservation>
+            },
+            {
+                path: 'payment',
+                element: <Payment></Payment>
             },
             {
                 path: 'payment-history',
