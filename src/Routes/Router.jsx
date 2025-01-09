@@ -101,7 +101,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'payment-history',
-                element: <PaymentHistory></PaymentHistory>
+                element: <PaymentHistory></PaymentHistory>,
             },
             {
                 path: 'my-cart',

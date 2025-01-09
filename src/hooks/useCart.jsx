@@ -16,7 +16,7 @@ const useCart = () => {
     if (isPending) return 'Loading...'
     if (error) return 'An error has occurred: ' + error.message
 
-    console.log(carts);
+    // console.log(carts);
     return [carts, isPending, refetch]
 };
 
