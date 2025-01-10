@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import useCart from '../../hooks/useCart';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import useAuth from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const CheckOut = () => {
     const stripe = useStripe();
@@ -14,7 +15,7 @@ const CheckOut = () => {
     const [clientSecret, setClientSecret] = useState('')
     const [transactionId, setTransactionId] = useState('')
     const axiosSecure = useAxiosSecure()
-
+    const navigate = useNavigate()
     if (isPending || loading) return 'Loading...'
     const totalPrice = carts.reduce((total, cart) => total + cart.price, 0)
 
@@ -91,6 +92,7 @@ const CheckOut = () => {
                     price: totalPrice,
                     PaymentDate: new Date(),
                     status: 'pending',
+                    transactionId: paymentIntent.id,
                 }
                 const { data } = await axiosSecure.post('/payments', paymentInfo)
                 // console.log(data.paymentResult, data.cartRemoveResult);
@@ -100,6 +102,7 @@ const CheckOut = () => {
                         icon: "success",
                         draggable: true
                     });
+                    navigate('/dashboard/payment-history')
                 }
             }
         }

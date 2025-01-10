@@ -4,16 +4,28 @@ import { AuthContext } from '../../../provider/AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import { FaCartArrowDown } from "react-icons/fa";
 import useCart from '../../../hooks/useCart';
+import useAdmin from '../../../hooks/useAdmin';
 
 const NavBar = () => {
     const { user, signOutUser } = useContext(AuthContext)
+    const [isAdmin, isLoading] = useAdmin()
     const [carts] = useCart();
 
     const navigationBar = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/menu'>Our Menu</NavLink></li>
         <li><NavLink to='/order/salads'>Order Food</NavLink></li>
-        <li><NavLink to='/secret'>Secret</NavLink></li>
+
+        {
+            user && isAdmin ? <li><NavLink to='/dashboard/home'>Dashboard</NavLink></li> : ''
+        }
+
+        {
+            user && !isAdmin ? <li><NavLink to='/dashboard/home'>Dashboard</NavLink></li> : ''
+        }
+
+
+
         <li><NavLink to='/dashboard/home'>
             <button className="flex items-center gap-2">
                 <FaCartArrowDown className='text-white w-5' />

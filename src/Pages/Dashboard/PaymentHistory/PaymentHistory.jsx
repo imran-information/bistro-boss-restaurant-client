@@ -35,8 +35,9 @@ const PaymentHistory = () => {
                         <tr className='uppercase'>
                             <th>#</th>
                             <th>Email</th>
-                            <th>Name</th>
                             <th>Total PRICE</th>
+                            <th>Status</th>
+                            <th>Transaction Id</th>
                             <th>Payment date</th>
                         </tr>
                     </thead>
@@ -45,8 +46,10 @@ const PaymentHistory = () => {
                         {payments?.map((item, indx) => <tr key={item._id}>
                             <th>{indx + 1}</th>
                             <td> {item.email}</td>
-                            <td> {item.name}</td>
                             <td>${item.price}</td>
+                            <td> {item.status}</td>
+                            <td> {item.transactionId}</td>
+                            <td> {new Date(item.PaymentDate).toLocaleString()}</td>
                         </tr>)}
                     </tbody>
                 </table>
