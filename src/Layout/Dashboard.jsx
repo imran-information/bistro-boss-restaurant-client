@@ -33,7 +33,7 @@ const Dashboard = () => {
 
                         </ul>
                         : <ul className='mt-16 uppercase'>
-                            <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/home'> <FaHome></FaHome> User Home</NavLink></li>
+                            <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/userHome'> <FaHome></FaHome> User Home</NavLink></li>
                             <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/reservation'><FaCalendar></FaCalendar> reservation</NavLink></li>
                             <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/payment-history'><FaAmazonPay /> payment history</NavLink></li>
                             <li><NavLink className='flex items-center gap-2 my-4 font-medium' to='/dashboard/my-cart'><FaCartPlus></FaCartPlus> my cart</NavLink></li>

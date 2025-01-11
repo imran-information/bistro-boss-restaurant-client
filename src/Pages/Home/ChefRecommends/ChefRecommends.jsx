@@ -5,7 +5,7 @@ import useMenu from '../../../hooks/useMenu';
 
 const ChefRecommends = () => {
     const [menu, loading] = useMenu()
-    console.log(menu);
+    // console.log(menu);
     if (loading) return <h1 className='text-4xl text-center'>Loading.....</h1>
     const offeredMenu = menu.filter(item => item.category === 'offered')
 

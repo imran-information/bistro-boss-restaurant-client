@@ -21,17 +21,31 @@ const NavBar = () => {
         }
 
         {
-            user && !isAdmin ? <li><NavLink to='/dashboard/home'>Dashboard</NavLink></li> : ''
+            user && !isAdmin ? <li><NavLink to='/dashboard/userHome'>Dashboard</NavLink></li> : ''
         }
 
 
 
-        <li><NavLink to='/dashboard/home'>
-            <button className="flex items-center gap-2">
-                <FaCartArrowDown className='text-white w-5' />
-                <div className="badge">+{carts.length}</div>
-            </button>
-        </NavLink></li>
+        {
+            user && isAdmin
+                ? <li>
+                    <NavLink to='/dashboard/home'>
+                        <button className="flex items-center gap-2">
+                            <FaCartArrowDown className='text-white w-5' />
+                            <div className="badge">+{carts.length}</div>
+                        </button>
+                    </NavLink>
+                </li>
+                :
+                <li>
+                    <NavLink to='/dashboard/userHome'>
+                        <button className="flex items-center gap-2">
+                            <FaCartArrowDown className='text-white w-5' />
+                            <div className="badge">+{carts.length}</div>
+                        </button>
+                    </NavLink>
+                </li>
+        }
     </>
     const handleSignOutUser = () => {
         signOutUser()
