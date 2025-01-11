@@ -10,7 +10,7 @@ const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'pink'];
 const AdminHome = () => {
-    const { user} = useAuth()
+    const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
 
     const { data: stats = [], error, isPending, } = useQuery({
@@ -119,9 +119,9 @@ const AdminHome = () => {
             </div>
 
             {/*  Chart section  */}
-            <div className="flex bg-gray-100 my-20 items-center">
+            <div className="flex bg-gray-100 my-20 py-20 items-center">
                 {/* Shape bar  */}
-                <div className="py-10 flex-1">
+                <div className=" flex-1">
                     <BarChart
                         width={500}
                         height={300}
