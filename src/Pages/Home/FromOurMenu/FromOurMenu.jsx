@@ -11,8 +11,8 @@ const FromOurMenu = () => {
     if (loading) return <h1 className='text-4xl text-center'>Loading.....</h1>
     // const [popularMenu, setPopularMenu] = useState([])
     // useEffect(() => {
-    //     // const { data } = axios.get('https://bistro-boss-restaurant-server-gold.vercel.app/menus');
-    //     fetch('https://bistro-boss-restaurant-server-gold.vercel.app/menus')
+    //     // const { data } = axios.get('http://localhost:5000/menus');
+    //     fetch('http://localhost:5000/menus')
     //         .then(res => res.json())
     //         .then(data => {
     //             const popularItems = data.filter(popularMenu => popularMenu.category === 'popular');

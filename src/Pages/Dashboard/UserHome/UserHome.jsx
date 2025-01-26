@@ -2,7 +2,7 @@ import React from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import useAuth from '../../../hooks/useAuth';
 import { Card, CardContent, Typography, Avatar } from "@mui/material";
-import { ShoppingCart, MenuBook, Phone } from "@mui/icons-material";
+import { ShoppingCart, MenuBook, Phone, RateReview, Event, Payment, Star, DateRange } from "@mui/icons-material";
 
 const UserHome = () => {
     const { user } = useAuth()
@@ -73,30 +73,39 @@ const UserHome = () => {
 
             {/* Profile and Activities */}
             <div className="grid grid-cols-2 gap-4">
-                <Card style={{ backgroundColor: '#FFEDD5' }} >
+                <Card style={{ backgroundColor: '#FFEDD5', padding: ' 70px' }} >
                     <CardContent className="flex flex-col items-center">
-                        <Avatar color='#D1A054' style={{ width: '200px', height: '200px', border: '4px', }} className="w-52 h-52 mb-4 bg-white border-2 border-orange-300" />
-                        <Typography className="font-bold">Awlad Hossain</Typography>
+                        <Avatar
+                            src={user?.photoURL || undefined}
+                            color="#D1A054"
+                            style={{ width: '200px', height: '200px', border: '4px solid #D1A054' }}
+                        />
+
+                        <Typography style={{ fontSize: '40px' }} className="font-bold">{user.displayName}</Typography>
                     </CardContent>
                 </Card>
 
-                <Card className="bg-yellow-100">
+                <Card style={{ backgroundColor: '#FEF9C3 ', padding: '55px 80px' }} className="bg-yellow-100">
                     <CardContent>
-                        <Typography variant="h6" className="mb-4 font-bold">
+                        <Typography style={{ fontSize: '40px' }} variant="h6" className="mb-4 font-bold">
                             Your Activities
                         </Typography>
-                        <ul className="space-y-2 text-blue-800">
+                        <ul className="space-y-2 text-2xl text-blue-800">
                             <li>
-                                <span className="font-bold text-blue-500">Orders:</span> 6
+                                <ShoppingCart />
+                                <span className="font-bold text-blue-500 ml-2">Orders:</span> 6
                             </li>
                             <li>
-                                <span className="font-bold text-blue-500">Reviews:</span> 2
+                                <Star />
+                                <span className="font-bold text-blue-500  ml-2">Reviews:</span> 2
                             </li>
                             <li>
-                                <span className="font-bold text-blue-500">Bookings:</span> 1
+                                <DateRange />
+                                <span className="font-bold text-blue-500  ml-2">Bookings:</span> 1
                             </li>
                             <li>
-                                <span className="font-bold text-red-500">Payment:</span> 3
+                                <Payment />
+                                <span className="font-bold text-blue-500 ml-2" >Payment:</span> 3
                             </li>
                         </ul>
                     </CardContent>
