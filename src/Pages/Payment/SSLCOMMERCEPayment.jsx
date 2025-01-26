@@ -15,9 +15,10 @@ const SSLCOMMERCEPayment = ({ user, carts, totalPrice, axiosSecure }) => {
         }
         // console.log(payment);
         const data = await axiosSecure.post('/ssl-payment', payment)
-        console.log(data.data);
-        if (data?.data) {
-            window.location.href = `${data.data}`
+        console.log(data.data.gatewayUrl);
+        if (data.data?.gatewayUrl) {
+            window.location.replace(data.data?.gatewayUrl)
+
         }
 
     }
