@@ -1,13 +1,58 @@
+/* Main carousel container - FULL WIDTH WITHOUT SCROLLBAR */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  left: 0;
+  right: 0;
+}
+
+/* Slide container - PROPER FULL WIDTH */
+.carousel .slider-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Image styling */
+.carousel .slide img {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  display: block;
+  object-fit: cover;
+}
+
+/* Thumbnail container */
 .carousel .thumbs-wrapper {
-    display: flex;
-    justify-content: center; /* Center the thumbnails horizontally */
+  display: flex;
+  justify-content: center;
+  margin: 20px auto 0;
+  padding: 0;
+  width: 100%;
+  max-width: 1200px;
+  overflow: hidden;
+}
+
+/* Add this to prevent any potential overflow */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carousel .slide img {
+    max-height: 50vh;
   }
-  
-  .carousel .thumbs {
-    justify-content: center; /* Ensure thumbnails are centered */
+}
+
+@media (max-width: 480px) {
+  .carousel .slide img {
+    max-height: 40vh;
   }
-  
-  .carousel .thumb {
-    margin: 0 5px; /* Add spacing between thumbnails (optional) */
-  }
-  
+}

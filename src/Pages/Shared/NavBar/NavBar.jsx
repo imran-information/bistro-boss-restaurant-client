@@ -12,37 +12,89 @@ const NavBar = () => {
     const [carts] = useCart();
 
     const navigationBar = <>
-        <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/menu'>Our Menu</NavLink></li>
-        <li><NavLink to='/order/salads'>Order Food</NavLink></li>
+        <li>
+            <NavLink
+                to="/"
+                className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                }
+            >
+                Home
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+                to="/menu"
+                className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                }
+            >
+                Our Menu
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+                to="/order/salads"
+                className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                }
+            >
+                Order Food
+            </NavLink>
+        </li>
 
+        {/* User & Admin Conditional Dashboard Render*/}
         {
-            user && isAdmin ? <li><NavLink to='/dashboard/home'>Dashboard</NavLink></li> : ''
+            user && isAdmin ? <li><NavLink className={({ isActive }) =>
+                isActive ? "nav-link active" : "nav-link"
+            } to='/dashboard/home'>Dashboard</NavLink></li> : ''
         }
 
         {
-            user && !isAdmin ? <li><NavLink to='/dashboard/userHome'>Dashboard</NavLink></li> : ''
+            user && !isAdmin ? <li><NavLink className={({ isActive }) =>
+                isActive ? "nav-link active" : "nav-link"
+            } to='/dashboard/userHome'>Dashboard</NavLink></li> : ''
         }
 
 
 
+        {/* User & Admin Conditional Render*/}
         {
             user && isAdmin
-                ? <li>
-                    <NavLink to='/dashboard/home'>
-                        <button className="flex items-center gap-2">
-                            <FaCartArrowDown className='text-white w-5' />
-                            <div className="badge">+{carts.length}</div>
-                        </button>
+                ?
+                <li className="relative">
+                    <NavLink
+                        to='/dashboard/home'
+                        className={({ isActive }) =>
+                            `flex items-center gap-1  py-2 rounded-lg transition-colors ${isActive ? "nav-link active" : "nav-link"
+                            }`
+                        }
+                    >
+                        <span>Our Shop</span>
+                        <FaCartArrowDown className="w-5 h-5" />
+                        {carts.length > 0 && (
+                            <span className="absolute top-4 -right-0 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                                {carts.length}
+                            </span>
+                        )}
                     </NavLink>
                 </li>
                 :
-                <li>
-                    <NavLink to='/dashboard/userHome'>
-                        <button className="flex items-center gap-2">
-                            <FaCartArrowDown className='text-white w-5' />
-                            <div className="badge">+{carts.length}</div>
-                        </button>
+                <li className="relative">
+                    <NavLink
+                        to='/dashboard/userHome'
+                        className={({ isActive }) =>
+                            `flex items-center gap-1  py-2 rounded-lg transition-colors ${isActive ? "nav-link active" : "nav-link"
+                            }`
+                        }
+                    >
+                        <span>Our Shop</span>
+                        <FaCartArrowDown className="w-5 h-5" />
+                        {carts.length > 0 && (
+                            <span className="absolute top-4 -right-0 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                                {carts.length}
+                            </span>
+                        )}
                     </NavLink>
                 </li>
         }
@@ -60,7 +112,7 @@ const NavBar = () => {
 
     return (
         <>
-            <div className="navbar px-10 fixed z-10 bg-black bg-opacity-50  text-white uppercase">
+            <div className="navbar md:px-10 py-3 fixed z-10 bg-[#151515] bg-opacity-50  text-white uppercase">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -79,7 +131,7 @@ const NavBar = () => {
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                            className="menu menu-sm dropdown-content bg-black rounded-box z-[1] mt-3 w-52 p-2 shadow">
                             {navigationBar}
                         </ul>
                     </div>
@@ -89,21 +141,37 @@ const NavBar = () => {
 
                     </Link>
                 </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
-                        {navigationBar}
-                    </ul>
-                </div>
+
                 <div className="navbar-end">
+                    <div className="navbar-center hidden lg:flex">
+                        <ul className="menu menu-horizontal px-1">
+                            {navigationBar}
+                        </ul>
+                    </div>
                     {
                         user ? <>
-                            <button onClick={handleSignOutUser} className="btn btn-neutral btn-sm mr-3">Sign Out</button>
+                            <button
+                                onClick={handleSignOutUser}
+                                className="px-4 py-3 text-xs uppercase font-bold text-[#EEFF25] bg-black rounded 
+            hover:bg-gray-800  hover:scale-[1.02] 
+            transition-all duration-200 ms-5 mr-3"
+                            >
+                                Sign Out
+                            </button>
                             <div className="avatar w-10 cursor-pointer">
-                                <div className="ring-primary ring-offset-base-100 w-24 rounded-full ring ring-offset-2">
+                                <div className="w-24 rounded-full ring-2 ring-[#EEFF25]">
                                     <img src={user?.photoURL} />
                                 </div>
                             </div>
-                        </> : <li className='list-none underline underline-offset-4 decoration-pink-500'><NavLink to='/signIn'>Sign In</NavLink></li>
+                        </> : <Link to='/signIn'>
+                            <button
+                                className="px-4 py-3 text-xs uppercase font-bold text-[#EEFF25] bg-black rounded 
+                                        hover:bg-gray-800  hover:scale-[1.02] 
+                                            transition-all duration-200 ms-5 mr-3"
+                            >
+                                Sign In
+                            </button>
+                        </Link>
                     }
                 </div>
             </div>
