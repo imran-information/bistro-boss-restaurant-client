@@ -1,51 +1,91 @@
 import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
+import { Navigation, Autoplay } from 'swiper/modules';
+import { Rating } from '@smastrom/react-rating';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
-import { Rating } from '@smastrom/react-rating'
-import '@smastrom/react-rating/style.css'
+import '@smastrom/react-rating/style.css';
 
 const Testimonials = () => {
-    const [reviews, setReviews] = useState([])
+    const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/reviews`)
             .then(res => res.json())
-            .then(data => setReviews(data))
-    }, [])
+            .then(data => setReviews(data));
+    }, []);
+
+    // Custom quote icon component
+    const QuoteIcon = () => (
+        <svg width="30" height="30" viewBox="0 0 47 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M34.615 19.154L21.1533 19.154C19.5506 19.154 18.1881 18.5935 17.0662 17.4716C15.9449 16.3497 15.3835 14.9876 15.3835 13.3845V11.4623C15.3835 7.2152 16.8862 3.5897 19.8914 0.5846C22.8963 -2.4195 26.5225 -3.9222 30.7691 -3.9222H34.615C35.6565 -3.9222 36.5576 -4.303 37.3191 -5.0639C38.0803 -5.8253 38.4608 -6.7264 38.4608 -7.7681V-15.4611C38.4608 -16.5026 38.0801 -17.4046 37.3191 -18.1659C36.5578 -18.9262 35.6567 -19.3076 34.615 -19.3076L30.7691 -19.3076C26.602 -19.3076 22.6265 -18.4955 18.84 -16.8737C15.0539 -15.2508 11.7791 -13.0571 9.01428 -10.2923C6.2497 -7.5288 4.0566 -4.2538 2.43393 -0.4672C0.811258 3.3188 -0.000183105 7.2954 -0.000183105 11.4621L-0.000183105 53.7688C-0.000183105 56.9756 1.1211 59.6985 3.36472 61.9429C5.60854 64.1861 8.33355 65.3076 11.5385 65.3076H34.6164C37.8212 65.3076 40.5453 64.1861 42.7894 61.9429C45.0326 59.6985 46.1545 56.9756 46.1545 53.7688V30.6929C46.1545 27.4867 45.0326 24.7638 42.7879 22.5191C40.5449 20.2762 37.8197 19.154 34.615 19.154Z" fill="#d4af37" />
+        </svg>
+    );
 
     return (
-        <section className='w-9/12 mx-auto my-20'>
-            <SectionTitle subTitle={"What Our Clients Say"} title={"testimonials"}></SectionTitle>
-            <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-                {
+        <section className="w-full bg-gray-50 overflow-hidden py-20 px-5 md:px-0">
+            <div className="md:w-9/12 mx-auto ">
+                <SectionTitle
+                    subTitle="What Our Clients Say"
+                    title="Testimonials"
+                    textColor="text-gray-900"
+                />
 
-                    reviews.map(review => <SwiperSlide key={review._id}>
-                        <div className="text-center px-20 flex flex-col items-center">
-                            <Rating
-                                style={{ maxWidth: 180 }}
-                                value={review.rating}
-                                readOnly
-                            />
-                            <p className='flex gap-2 my-3'>
-                                <svg width="30" height="86" viewBox="0 0 47 86" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M34.615 39.1542L21.1533 39.1542C19.5506 39.1542 18.1881 38.5935 17.0662 37.4716C15.9449 36.3497 15.3835 34.9876 15.3835 33.3845V31.4623C15.3835 27.2152 16.8862 23.5897 19.8914 20.5846C22.8963 17.5805 26.5225 16.0778 30.7691 16.0778H34.615C35.6565 16.0778 36.5576 15.697 37.3191 14.9361C38.0803 14.1747 38.4608 13.2736 38.4608 12.2319V4.53889C38.4608 3.49738 38.0801 2.59543 37.3191 1.83408C36.5578 1.07379 35.6567 0.692383 34.615 0.692383L30.7691 0.692383C26.602 0.692383 22.6265 1.50446 18.84 3.12628C15.0539 4.74917 11.7791 6.9429 9.01428 9.70769C6.2497 12.4712 4.0566 15.7462 2.43393 19.5328C0.811258 23.3188 -0.000183105 27.2954 -0.000183105 31.4621L-0.000183105 73.7688C-0.000183105 76.9756 1.1211 79.6985 3.36472 81.9429C5.60854 84.1861 8.33355 85.3076 11.5385 85.3076H34.6164C37.8212 85.3076 40.5453 84.1861 42.7894 81.9429C45.0326 79.6985 46.1545 76.9756 46.1545 73.7688V50.6929C46.1545 47.4867 45.0326 44.7638 42.7879 42.5191C40.5449 40.2762 37.8197 39.1542 34.615 39.1542Z" fill="#151515" />
-                                </svg>
-                                <svg width="30" height="86" viewBox="0 0 47 86" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M34.615 39.1542L21.1533 39.1542C19.5506 39.1542 18.1881 38.5935 17.0662 37.4716C15.9449 36.3497 15.3835 34.9876 15.3835 33.3845V31.4623C15.3835 27.2152 16.8862 23.5897 19.8914 20.5846C22.8963 17.5805 26.5225 16.0778 30.7691 16.0778H34.615C35.6565 16.0778 36.5576 15.697 37.3191 14.9361C38.0803 14.1747 38.4608 13.2736 38.4608 12.2319V4.53889C38.4608 3.49738 38.0801 2.59543 37.3191 1.83408C36.5578 1.07379 35.6567 0.692383 34.615 0.692383L30.7691 0.692383C26.602 0.692383 22.6265 1.50446 18.84 3.12628C15.0539 4.74917 11.7791 6.9429 9.01428 9.70769C6.2497 12.4712 4.0566 15.7462 2.43393 19.5328C0.811258 23.3188 -0.000183105 27.2954 -0.000183105 31.4621L-0.000183105 73.7688C-0.000183105 76.9756 1.1211 79.6985 3.36472 81.9429C5.60854 84.1861 8.33355 85.3076 11.5385 85.3076H34.6164C37.8212 85.3076 40.5453 84.1861 42.7894 81.9429C45.0326 79.6985 46.1545 76.9756 46.1545 73.7688V50.6929C46.1545 47.4867 45.0326 44.7638 42.7879 42.5191C40.5449 40.2762 37.8197 39.1542 34.615 39.1542Z" fill="#151515" />
-                                </svg>
-                            </p>
+                <div className="mt-12">
+                    <Swiper
+                        navigation={{
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        }}
+                        modules={[Navigation, Autoplay]}
+                        autoplay={{
+                            delay: 5000,
+                            disableOnInteraction: false,
+                        }}
+                        loop={true}
+                        spaceBetween={30}
+                        slidesPerView={1}
+                        breakpoints={{
+                            768: {
+                                slidesPerView: 2,
+                                spaceBetween: 40
+                            },
+                            1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 50
+                            }
+                        }}
+                        className="relative"
+                    >
+                        {reviews.map(review => (
+                            <SwiperSlide key={review._id}>
+                                <div className="bg-white p-8 rounded-xl shadow-lg h-full flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl">
+                                    <div className="flex items-center justify-center mb-4">
+                                        <QuoteIcon />
+                                    </div>
+                                    <Rating
+                                        style={{ maxWidth: 120 }}
+                                        value={review.rating}
+                                        readOnly
+                                        className="mb-6"
+                                    />
+                                    <p className="text-gray-600 mb-6 text-sm md:text-base leading-relaxed line-clamp-3">
+                                        {review.details}
+                                    </p>
+                                    <h4 className="text-xl font-semibold text-amber-500 mt-auto">
+                                        {review.name}
+                                    </h4>
+                                </div>
+                            </SwiperSlide>
+                        ))}
 
-                            <p className="">{review.details}</p>
-                            <h4 className='text-3xl text-subTitle-color mt-2'>{review.name}</h4>
-                        </div>
-                    </SwiperSlide>)
-                }
-            </Swiper>
-
+                        {/* Custom navigation buttons */}
+                        <div className="swiper-button-prev !text-amber-500 !left-0"></div>
+                        <div className="swiper-button-next !text-amber-500 !right-0"></div>
+                    </Swiper>
+                </div>
+            </div>
         </section>
     );
 };
