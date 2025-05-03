@@ -1,35 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
-import axios from 'axios';
-import PopularItem from '../../../components/PopularItem/PopularItem';
 import useMenu from '../../../hooks/useMenu';
+import PopularItem from '../../../components/PopularItem/PopularItem';
 
 const FromOurMenu = () => {
-    const [menu, loading] = useMenu()
+    const [menu, loading] = useMenu();
+    const popularMenu = menu.filter(item => item.category === 'popular');
 
-    const popularMenu = menu.filter(item => item.category === 'popular')
-    if (loading) return <h1 className='text-4xl text-center'>Loading.....</h1>
-    // const [popularMenu, setPopularMenu] = useState([])
-    // useEffect(() => {
-    //     // const { data } = axios.get('http://localhost:5000/menus');
-    //     fetch('http://localhost:5000/menus')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             const popularItems = data.filter(popularMenu => popularMenu.category === 'popular');
-    //             setPopularMenu(popularItems)
-    //         })
-    // }, [])
+    if (loading) return (
+        <div className="flex justify-center items-center h-64">
+            <span className="loading loading-spinner loading-lg text-primary"></span>
+        </div>
+    );
 
     return (
-        <section>
-            <SectionTitle subTitle={"Check it Out"} title={"FROM OUR MENU"}></SectionTitle>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-                {
-                    popularMenu.map(item => <PopularItem key={item._id} item={item}></PopularItem>)
-                }
+        <section className="py-8">
+            <SectionTitle subTitle={"Check it Out"} title={"FROM OUR MENU"} />
+
+            <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-10 mt-8 md:mt-12">
+                {popularMenu.map(item => (
+                    <PopularItem key={item._id} item={item} />
+                ))}
             </div>
-            <div className="flex  justify-center my-10 items-center">
-                <button className="btn btn-outline border-0 border-b-4 uppercase">View Full  Menu</button>
+
+            <div className="flex justify-center mt-8 md:mt-12 mb-4 md:mb-8">
+                <button className="btn btn-outline border-0 border-b-4 uppercase px-8 py-2 md:px-10 md:py-3 text-sm md:text-base">
+                    View Full Menu
+                </button>
             </div>
         </section>
     );
